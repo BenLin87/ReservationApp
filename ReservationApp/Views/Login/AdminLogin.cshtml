@@ -1,0 +1,57 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@_localizer["PageTitle"]</title>
+    <link rel="stylesheet" href="/css/AdminLogin.css">
+
+
+</head>
+<body>
+
+    @if (User.Identity == null || !User.Identity.IsAuthenticated)
+    {
+        <form class="container" autocomplete="off">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="justify-content-center align-items-center border border-2 p-2">
+                    <div class="d-flex justify-content-end align-items-center mb-2">
+                        <div>
+                            <label for="adminUsername">@_localizer["AdminAccount"]：</label>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <input class="form-control" type="text" id="adminUsername" name="adminUsername" placeholder="admin">
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div>
+                            <label for="adminPassword">@_localizer["AdminPassword"]：</label>
+                        </div>
+                        <div>
+                            <input class="form-control" type="password" id="adminPassword" name="adminPassword" placeholder="admin">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button id="login_btn" class="btn btn-outline-dark" type="button">@_localizer["Login"]</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+    <div class="d-flex justify-content-center p-2">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <label id="message">@_localizer["LoginMessage"]</label>
+        }
+        else
+        {
+            <label id="message"></label>
+        }
+    </div>
+    <partial name="_MessageDialog" />
+    <script type="module" src="~/js/AdminLogin.js" asp-append-version="true"></script>
+</body>
+</html>

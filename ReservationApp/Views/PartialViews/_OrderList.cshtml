@@ -1,0 +1,24 @@
+﻿@using ReservationApp.Resources
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@SharedLocalizer["User"]</th>
+            <th>@SharedLocalizer["OrderId"]</th>
+            <th>@SharedLocalizer["ReservationDate"]</th>
+            <th>@SharedLocalizer["ReservationTime"]</th>
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                //For modify and delete button.
+                <th></th>
+                <th></th>
+            }
+        </tr>
+    </thead>
+    <tbody id="orderListContent">
+    </tbody>
+</table>

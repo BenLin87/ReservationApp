@@ -1,0 +1,75 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ReservationApp.Resources;
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer _localizer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@_localizer["PageTitle"]</title>
+    <link rel="stylesheet" href="/css/ConfirmOrder.css">
+
+    <script type="module" src="/js/ConfirmOrder.js"></script>
+</head>
+<body>
+    @if (ViewBag.OrderData != null)
+    {
+        <script>
+            var orderData = "@Html.Raw(ViewBag.OrderData)";
+            sessionStorage.setItem("OrderData", orderData);
+        </script>
+    }
+
+    <div id="timetable" class="d-flex justify-content-center p-2" style="display:none">
+        <table class="timetable">
+            <tr>
+                <th class="table_col_header userName">@SharedLocalizer["UserName"]</th>
+                <th class="table_col_header orderId">@SharedLocalizer["OrderId"]</th>
+                <th class="table_col_header reserveDate">@SharedLocalizer["ReservationDate"]</th>
+                <th class="table_col_header reserveTime">@SharedLocalizer["ReservationTime"]</th>
+            </tr>
+        </table>
+    </div>
+    
+    @if (ViewBag.ReturnUrl != null)
+    {
+        <label id="returnUrl" class="hidden">@Html.Raw(ViewBag.ReturnUrl)</label>
+    }
+   
+    <div class="d-flex justify-content-center mb-2">
+        @if (ViewBag.Message != null)
+        {
+            <label id="message" class="hidden">@Html.Raw(ViewBag.Message)</label>
+        }
+        else
+        {
+            <label id="message" class="hidden"></label>
+        }
+      
+    </div>
+    <div class="d-flex justify-content-center">
+        <button id="confirm_btn" class="btn btn-outline-dark" type="button">@_localizer["ConfirmButton"]</button>
+    </div>
+    <div id="currentCulture" class="hidden">@System.Threading.Thread.CurrentThread.CurrentCulture.Name</div>
+
+    @if (ViewBag.ActionName != null){
+        //Store localization resources there,
+        //so we can change the displayed message and maintain localization.
+        var actionName = ViewBag.ActionName; //ex."AddOrder"
+        var actionDoneName = ViewBag.ActionName + "Done"; //ex."AddOrderDone"
+        var actionFailName = ViewBag.ActionName + "Fail"; //ex."AddOrderFail"
+
+        <div id="actionMessage" class="hidden">@_localizer[actionName]</div>
+        <div id="actionDoneMessage" class="hidden">@_localizer[actionDoneName]</div>
+        <div id="actionFailMessage" class="hidden">@_localizer[actionFailName]</div>
+        <script>
+            var actionNameRaw = "@ViewBag.ActionName";
+            var actionNameJson = JSON.stringify(actionNameRaw);
+            sessionStorage.setItem("ActionName", actionNameJson);
+        </script>
+    }
+    <!--<partial name="_MessageDialog" />-->
+</body>
+</html>

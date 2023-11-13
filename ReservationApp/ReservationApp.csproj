@@ -1,0 +1,106 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SatelliteResourceLanguages>en;zh-TW</SatelliteResourceLanguages>
+    <PublishSingleFile>false</PublishSingleFile>
+    <UserSecretsId>2df64b44-f012-4204-85d4-2a18767961a3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\css\tempus-dominus.css" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\css\tempus-dominus.css.map" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\css\tempus-dominus.min.css" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.esm.js" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.esm.js.map" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.esm.min.js" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.js" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.js.map" />
+    <Content Remove="C:\Users\Ben\.nuget\packages\tempusdominus\6.7.11\contentFiles\any\any\wwwroot\js\tempus-dominus.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Language.en-US.resx" />
+    <EmbeddedResource Remove="Resources\Language.zh-TW.resx" />
+    <EmbeddedResource Remove="Resources\Views\Index.en-US.resx" />
+    <EmbeddedResource Remove="Resources\Views\Index.zh-TW.resx" />
+    <EmbeddedResource Remove="Resources\Views\_Layout.en-US.resx" />
+    <EmbeddedResource Remove="Resources\Views\_Layout.zh-TW.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CopyLocalDb.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bootstrap.v3.Datetimepicker.CSS" Version="4.17.49" />
+    <PackageReference Include="jQuery" Version="3.7.0" />
+    <PackageReference Include="jQuery.UI.Combined" Version="1.13.2" />
+    <PackageReference Include="JW.Pager" Version="1.0.1" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="7.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.14" />
+    <PackageReference Include="Moment.js" Version="2.29.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="popper.js" Version="1.16.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Migrations\ReservationApp.LocalDb\ReservationApp.LocalDb.csproj" />
+    <ProjectReference Include="..\Migrations\ReservationApp.PostgreSql\ReservationApp.PostgreSql.csproj" />
+    <ProjectReference Include="..\ReservationApp.Models\ReservationApp.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Models\LocalDb\Database.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Models\LocalDb\Database_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\Models\" />
+    <Folder Include="wwwroot\lib\moment\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Controllers\HomeController.en-US.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers\HomeController.zh-TW.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.en-US.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Index.zh-TW.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.en-US.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Layout.zh-TW.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

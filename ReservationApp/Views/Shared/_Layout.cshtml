@@ -1,0 +1,103 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+
+<!DOCTYPE html>
+<html lang=@System.Threading.Thread.CurrentThread.CurrentCulture.Name>
+<head>
+    <title>ReservationApp</title>
+    <meta charset="utf-8"/>
+    <meta name="google" content="notranslate"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ReservationApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ReservationApp.styles.css" asp-append-version="true" />
+    
+    <script src="~/lib/jquery/dist/jquery-3.7.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/_Layout.js"></script>
+    <link rel="stylesheet" href="/css/_Layout.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 ">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ReservationApp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link light_effect" asp-area="" asp-controller="Home" asp-action="Index">@_localizer["MenuItem_Home"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link light_effect" asp-area="" asp-controller="NewOrder" asp-action="Index">@_localizer["MenuItem_NewOrder"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link light_effect" asp-area="" asp-controller="ManageOrder" asp-action="ManageOrder">@_localizer["MenuItem_ManageOrder"]</a>
+                        </li>
+                    </ul>
+                    <div class="ml-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" id="loginButton">
+                                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                                {
+                                    <a id="logout_btn" class="nav-link light_effect" asp-area="" asp-controller="Login" asp-action="Logout">@_localizer["MenuItem_Logout"] ( @User.Identity.Name )</a>
+                                }
+                                else
+                                {
+                                    <a id="login_btn" class="nav-link light_effect" asp-area="" asp-controller="Login" asp-action="AdminLoginPage">@_localizer["MenuItem_Login"]</a>
+                                }
+                            </li>
+                            <li class="nav-item">
+                                <div id="currentCulture" class="hidden">@System.Threading.Thread.CurrentThread.CurrentCulture.Name</div>
+                                <div class="dropdown" style="width:120px;">
+                                    <select id="languageSelector" class="form-select" >
+                                        @if (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "zh-TW")
+                                        {
+                                            <option class="languageOption" value="zh-TW">zh-TW</option>
+                                        }
+                                        else
+                                        {
+                                            <option class="languageOption" value="zh-Hant">zh-Hant</option>
+                                        }
+                                        <option class="languageOption" value="en-US">en-US</option>
+                                    </select>
+                                    <!--
+                                    <a id="languageSelector" class="nav-link text-dark" role="button" data-bs-toggle="dropdown" aria-expanded="false">@_localizer["MenuItem_Language"]</a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageSelector">
+                                        <li><a id="language_zh-TW" class="dropdown-item">zh-TW</a></li>
+                                        <li><a id="language_en-US" class="dropdown-item">en-US</a></li>
+                                    </ul>-->
+                                </div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            ReservationApp © 2023 Benlin.
+        </div>
+    </footer>
+    <!--<script src="~/lib/jquery/dist/jquery-3.7.0.min.js"></script>
+    <!--<script src="/js/jquery-3.7.0.min.js"></script>-->
+    <!--<script src="~/lib/jquery/dist/jquery.min.js"></script>-->
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

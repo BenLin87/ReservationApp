@@ -1,0 +1,46 @@
+﻿#displayMode {
+    width: 200px;
+}
+
+
+@media (max-width: 767px) {
+    #displayMode {
+        width: 180px;
+    }
+}
+
+@media (max-width: 460px) {
+    #overdueBox {
+        display:none;
+    }
+
+    #overdueLabel {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    #displayMode {
+        width: 150px;
+    }
+}
+
+.tooltip {
+    position: absolute;
+}
+.tooltip-inner {
+    text-align: left;
+    font-size: 16px;
+    opacity: 10;
+}
+
+#overdueBox {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+}
+
+#overdueLabel
+{
+    color:red;
+}

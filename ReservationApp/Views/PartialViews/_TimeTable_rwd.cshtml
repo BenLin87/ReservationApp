@@ -1,0 +1,72 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer _localizer
+
+<link rel="stylesheet" href="/css/_TimeTable_rwd.css">
+<script type="module" src="/js/_TimeTable_rwd.js"></script>
+
+<div class="time_table_container d-flex justify-content-center" lang=@System.Threading.Thread.CurrentThread.CurrentCulture.Name>
+    <div class="table_container desktop d-flex justify-content-center align-items-center">
+        <div class="first_column_container" column="0">
+            <div class="table_root" column="0" row="0">@_localizer["SelectAll"]</div>
+            <div class="time_container">
+            @{
+                List<string> colHeaders = new List<string>();
+
+                @for (int i = 7; i < 20; i++)
+                {
+                    var column_val = 0;
+                    var rol_val = i-6;
+                    string startHourStr = @i.ToString().PadLeft(2, '0');
+                    string endHourStr = (@i + 1).ToString().PadLeft(2, '0');
+                    string timeStr = startHourStr + ":00~" + endHourStr + ":00";
+                    colHeaders.Add(timeStr);
+                        <div class="table_row_header" column=@column_val row=@rol_val>@Html.Raw(timeStr)</div>
+                }
+            }
+            </div>
+        </div>
+        @{
+
+            var startDate = DateTime.Now.Date;
+            if(ViewBag.StartDate != null)
+            {
+                startDate = ViewBag.StartDate;
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                var column_val = i + 1;
+                var rol_val = 0;
+                <div class="column_container flex-column" column=@column_val>
+                    @{
+                        var dateOfColumn = startDate.AddDays(i);
+                        var dateStr = dateOfColumn.ToString(@"yyyy/MM/dd");
+                        var dayOfWeek = System.Globalization.DateTimeFormatInfo.CurrentInfo.DayNames[(byte)dateOfColumn.DayOfWeek];
+                        var content = dateStr + "<br/>" + dayOfWeek;
+                        if(dateOfColumn.Date < DateTime.Now.Date)
+                        {
+                            <div class="table_col_header" column=@column_val row=@rol_val date=@dateStr 
+                            data-bs-toggle="tooltip" data-bs-placement="top" 
+                            title="@_localizer["OverdueTest"]">@Html.Raw(content)</div>
+                        }
+                        else
+                        {
+                            <div class="table_col_header" column=@column_val row=@rol_val date=@dateStr>@Html.Raw(content)</div>
+                        }
+                    }
+                    
+                   
+                    <div class="cell_inner_container">
+
+                    @for(int j = 0; j < colHeaders.Count(); j++)
+                    {
+                        rol_val = j + 1;
+                        <div class="table_cell available" column=@column_val row=@rol_val date=@dateStr time=@colHeaders[j]></div>
+                    }
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

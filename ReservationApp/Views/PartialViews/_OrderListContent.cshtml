@@ -1,0 +1,84 @@
+﻿@using ReservationApp.Resources
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ReservationApp.Models.Entities;
+@inject IViewLocalizer _localizer
+@model IEnumerable<ReservationApp.Models.Entities.Order>
+
+
+@foreach (Order item in Model)
+{
+    if (item.Reservations.Count == 0 || item.TimeCount == 0)
+        continue;
+
+    bool firstReservationRow = true;
+    string orderRowSpan = item.TimeCount.ToString();
+
+    @foreach (var rdata in item.Reservations)
+    {
+        bool firstTimeRow = true;
+        string reservationRowSpan = rdata.Times.Count.ToString();
+        DateTime dateTime = DateTime.Now;
+        foreach (var tdata in rdata.Times)
+        {
+            <tr>
+                @if (firstReservationRow)
+                {
+                    <td class="userColumn border-bottom-1 border-dark" rowspan=@orderRowSpan>
+                        @Html.DisplayFor(modelItem => item.User.Name)
+                    </td>
+                    <td class="orderColumn border-bottom-1 border-dark" rowspan=@orderRowSpan>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                }
+                @if (firstTimeRow)
+                {
+                    var dateClass = "dateColumn";
+                    if (rdata.Date < dateTime.Date ||
+                       (rdata.Date == dateTime.Date && rdata.Times.Last().StartTime < dateTime))
+                    {
+                        dateClass += " overdue";
+                    }
+                    if(rdata.Equals(item.Reservations.Last()))
+                    {
+                        dateClass += " border-bottom-1 border-dark";
+                    }
+                    <td class="@dateClass" rowspan=@reservationRowSpan>
+                        @Html.DisplayFor(modelItem => rdata.Date, "_DateFormat")
+                    </td>
+                    
+                    firstTimeRow = false;
+                }
+                @{
+                    var timeClass = "timeColumn";
+                    if (tdata.Equals(rdata.Times.Last()) && rdata.Equals(item.Reservations.Last()))
+                    {
+                        timeClass += " border-bottom-1 border-dark";
+                    }
+                    if (rdata.Date < dateTime.Date ||
+                        (rdata.Date == dateTime.Date && tdata.StartTime < dateTime))
+                    {
+                        timeClass += " overdue";
+                    }
+                    <td class="@timeClass">
+                        @Html.DisplayFor(modelItem => tdata.Time)
+                    </td>
+                }
+                @if (firstReservationRow)
+                {
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <td class="border-bottom-1 border-dark" rowspan=@orderRowSpan>
+                            <a asp-action="ModifyReservationTime" asp-route-orderId="@item.Id">@_localizer["ModifyOrder"]</a>
+                        </td>
+                        <td class="border-bottom-1 border-dark" rowspan=@orderRowSpan>
+                            <a asp-action="ConfirmDeleteOrder" asp-route-orderId="@item.Id">@_localizer["DeleteOrder"]</a>
+                        </td>
+                    }
+                    firstReservationRow = false;
+                }
+            </tr>
+        }
+    }
+}

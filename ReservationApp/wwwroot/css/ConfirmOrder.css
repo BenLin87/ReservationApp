@@ -1,0 +1,30 @@
+﻿.form-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    margin: 10px;
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.timetable {
+    border-collapse: collapse;
+    width: auto;
+    table-layout: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.timetable th,
+.timetable td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+

@@ -1,0 +1,28 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ReservationApp.Resources;
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer _localizer
+
+<!DOCTYPE html>
+<head>
+    <title>@_localizer["PageTitle"]</title>
+    <script type="module" src="/js/InputUserData.js"></script>
+    <link rel="stylesheet" href="/css/InputUserData.css">
+</head>
+<body>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="flex-column justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center mb-3 gap-2">
+                <label id="userNameLabel" for="userName">@SharedLocalizer["UserName"]：</label>
+                <input id="userName" class="ps-2 pe-2 form-control" maxlength="50" type="text" placeholder="@SharedLocalizer["UserNameMaxLength"]" lang="en-US">
+            </div>
+            <div class="d-flex justify-content-center">
+                <button id="next_btn" class="btn btn-outline-dark" type="button">@SharedLocalizer["NextButton"]</button>
+            </div>
+        </div>
+    </div>
+    <partial name="_MessageDialog"/>
+    <div id="currentCulture" class="hidden">@System.Threading.Thread.CurrentThread.CurrentCulture.Name</div>
+</body>

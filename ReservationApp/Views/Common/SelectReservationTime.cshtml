@@ -1,0 +1,56 @@
+﻿@using ReservationApp.Resources
+@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@inject IViewLocalizer _localizer
+
+@{
+    ViewData["Title"] = "SelectReservationTime";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@_localizer["PageTitle"]</title>
+    <link rel="stylesheet" href="/css/SelectReservationTime.css">
+    <script src ="/js/ClearData.js"></script>
+    <script type="module" src ="/js/SelectReservationTime.js"></script>
+</head>
+<body>
+  
+    @if (ViewBag.ExistedReservations != null)
+    {
+        <script>
+            var existedReservations = "@Html.Raw(ViewBag.ExistedReservations)";
+            sessionStorage.setItem("ExistedReservations", existedReservations);
+        </script>
+    }
+    else
+    {
+        <script>sessionStorage.removeItem("ExistedReservations");</script>
+    }
+    @if (ViewBag.OrderData != null)
+    {
+        <script>
+            var orderData = "@Html.Raw(ViewBag.OrderData)";
+            sessionStorage.setItem("OrderData", orderData);
+        </script>
+        <!--<label id="orderData" class="hidden"> @Html.Raw(ViewBag.OrderData)</label>-->
+    }
+    else
+    {
+        <script>sessionStorage.removeItem("OrderData");</script>
+    }
+    @if (ViewBag.NextUrl != null)
+    {
+        <label id="nextUrl" class="hidden">@Html.Raw(ViewBag.NextUrl)</label>
+    }
+    <partial name="~/Views/PartialViews/_TimeTable_rwd.cshtml" />
+    <div class="d-flex justify-content-center m-3">
+        <button id="next_btn" class="btn btn-outline-dark" type="button">@SharedLocalizer["NextButton"]</button>
+    </div>
+    <partial name="_MessageDialog" />
+    <div id="currentCulture" class="hidden">@System.Threading.Thread.CurrentThread.CurrentCulture.Name</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TempusDominus</id>
+    <version>6.7.11</version>
+    <title>Tempus Dominus</title>
+    <authors>Eonasdan</authors>
+    <owners>Eonasdan</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/Eonasdan/tempus-dominus/blob/master/LICENSE</licenseUrl>
+    <icon>td.png</icon>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Eonasdan/tempus-dominus</projectUrl>
+    <description>Powerful and robust date and time picker</description>
+    <summary>Tempus Dominus css and javascript</summary>
+    <releaseNotes>https://getdatepicker.com/6/change-log.html</releaseNotes>
+    <copyright>Copyright 2013-2022</copyright>
+    <tags>date time picker datetimepicker datepicker</tags>
+    <contentFiles>
+      <files include="**/*" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+</package>

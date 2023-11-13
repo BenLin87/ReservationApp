@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>管理員登入</title>
+    <link rel="stylesheet" href="/css/OrderManagement.css">
+    <script src="/js/jquery-3.7.0.min.js"></script>
+    <script src="/js/AdminLogin.js"></script>
+</head>
+<body>
+    <div class="form-row">
+        <label for="adminUsername">Admin account：</label>
+        <input type="text" id="adminUsername" name="adminUsername">
+    </div>
+
+    <div class="form-row">
+        <label for="adminPassword">Admin password：</label>
+        <input type="password" id="adminPassword" name="adminPassword">
+    </div>
+    <div class="form-row center-button">
+        <button class="login_btn" type="button">Login</button>
+    </div>
+</body>
+</html>

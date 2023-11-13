@@ -1,0 +1,13 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer _localizer
+
+@{
+    ViewData["Title"] = "ReservationApp";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@_localizer["Welcome"]</h1>
+    <p>@_localizer["Introduction"]</p>
+</div>
