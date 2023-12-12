@@ -7,7 +7,6 @@ using ReservationApp.Models.Entities;
 using ReservationApp.Services.Interface;
 using System;
 using System.Diagnostics;
-using static ReservationApp.Models.SearchCondition_Order;
 
 namespace ReservationApp.Services
 {
@@ -182,12 +181,12 @@ namespace ReservationApp.Services
                 result = result?.SortByDateAndTime();
                 if (result == null) return null;
 
-                if (conditions.DisplayMode == DisplayModes.Avaliable)
+                if (conditions.DisplayMode == 0)
                 {
                     DateTime timeFrom = DateTime.Now;
                     result = result.Where(o => o.Reservations.Last().Times.Last().EndTime > timeFrom).ToList();
                 }
-                else if (conditions.DisplayMode == DisplayModes.Overdue)
+                else if (conditions.DisplayMode == 1)
                 {
                     DateTime timeFrom = DateTime.Now;
                     result = result.Where(o => o.Reservations.Last().Times.Last().EndTime < timeFrom).ToList();

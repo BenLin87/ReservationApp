@@ -18,14 +18,8 @@ namespace ReservationApp.Models
         public string DateTo { get; set; } = string.Empty;
 
         [JsonPropertyName("displayMode")]
-        public DisplayModes DisplayMode { get; set; }
+        public int DisplayMode { get; set; }
 
-        public enum DisplayModes
-        {
-            Avaliable = 0,
-            Overdue = 1,
-            All = 2
-        }
 
         public bool IsEmpty()
         {
@@ -33,7 +27,7 @@ namespace ReservationApp.Models
                 OrderId == string.Empty &&
                 DateFrom == string.Empty &&
                 DateTo == string.Empty &&
-                DisplayMode == DisplayModes.All)
+                DisplayMode == 3)
             {
                 return true;
             }

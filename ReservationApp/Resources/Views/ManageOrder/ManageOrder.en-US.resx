@@ -130,7 +130,7 @@
     <value>Search for all orders with reservation dates including or earlier than this field. If you clear this field, it means there is no restriction on the end time.</value>
   </data>
   <data name="DisplayModeTip" xml:space="preserve">
-    <value>This setting will filter the orders in &amp;quot;Date from&amp;quot; and &amp;quot;Date to&amp;quot;. An overdue order means &amp;quot;all&amp;quot; reservation dates and times earlier than the current date and time.</value>
+    <value>This setting will filter the orders in "Date from" and "Date to". An overdue order means "all" reservation dates and times earlier than the current date and time.</value>
   </data>
   <data name="Display_All" xml:space="preserve">
     <value>All orders</value>
