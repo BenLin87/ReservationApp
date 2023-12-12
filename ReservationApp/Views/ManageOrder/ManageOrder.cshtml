@@ -1,4 +1,4 @@
-﻿@using ReservationApp.Resources
+﻿﻿@using ReservationApp.Resources
 @using System.Globalization
 @using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
@@ -18,7 +18,7 @@
     <script src="~/lib/jquery.ui.combined/1.13.2/Content/Scripts/jquery-ui-1.13.2.min.js"></script>
     <script src="~/lib/moment/moment-with-locales.js"></script>
     <script src="/js/ManageOrder.js"></script>
-    
+
     <script src="/js/ClearData.js"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@
             <div class="dateRange d-flex gap-2 border border-2 p-2">
                 <div>
                     <label for="dateFrom">@_localizer["DateFrom"]</label>
-                    <input type="text" id="dateFrom" class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" title=@_localizer["DateFromTip"]>
+                    <input type="text" id="dateFrom" class="form-control" data-bs-toggle="tooltip" data-bs-placement="right" title="@_localizer["DateFromTip"]">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -50,7 +50,7 @@
                 <!-- End date of Order -->
                 <div>
                     <label for="dateTo">@_localizer["DateTo"]</label>
-                    <input type="text" id="dateTo" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" title=@_localizer["DateToTip"]>
+                    <input type="text" id="dateTo" class="form-control" data-bs-toggle="tooltip" data-bs-placement="left" title="@_localizer["DateToTip"]">
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -60,7 +60,7 @@
         <div class="filterAndButtons d-flex flex-wrap justify-content-center">
             <div class="filter d-flex w-50 p-2 pe-1 pe-lg-2 justify-content-end">
                 <div>
-                    <select class="form-select" id="displayMode" data-bs-toggle="tooltip" data-bs-placement="bottom" title=@_localizer["DisplayModeTip"]>
+                    <select class="form-select" id="displayMode" data-bs-toggle="tooltip" data-bs-placement="bottom" title="@_localizer["DisplayModeTip"]">
                         <option value="availableOrders">@_localizer["Display_Available"]</option>
                         <option value="overdueOrders">@_localizer["Display_Unavailable"]</option>
                         <option value="allOrders">@_localizer["Display_All"]</option>
@@ -71,14 +71,14 @@
                 <button type="button" class="btn btn-outline-dark" id="resetButton">@_localizer["ResetButton"]</button>
                 <button type="button" class="btn btn-outline-dark" id="searchButton">@_localizer["SearchButton"]</button>
                 <div class="d-flex align-items-center gap-2">
-                <div id="overdueBox" class="ms-lg-3"></div>
-                <label id="overdueLabel">: @_localizer["Overdue"]</label>
+                    <div id="overdueBox" class="ms-lg-3"></div>
+                    <label id="overdueLabel">: @_localizer["Overdue"]</label>
                 </div>
             </div>
         </div>
     </form>
-    <partial name="_MessageDialog"/>
-    <partial name="~/Views/PartialViews/_OrderList.cshtml" id="orderList"/>
+    <partial name="_MessageDialog" />
+    <partial name="~/Views/PartialViews/_OrderList.cshtml" id="orderList" />
     <div id="currentCulture" class="hidden">@System.Threading.Thread.CurrentThread.CurrentCulture.Name</div>
 </body>
 </html>
